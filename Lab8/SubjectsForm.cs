@@ -30,16 +30,6 @@ namespace Lab8
         }
         private void chooseFileClick(object sender, EventArgs e)
         {
-
-            //xmlFile = XDocument.Load(path);
-            //xmlPathName = path;
-            //try
-            //{
-            //    lastId = xmlFile.Root.Nodes().Count() == 0 ? START_ID : 
-            //        long.Parse(((XElement)xmlFile.Root.LastNode).LastAttribute.Value);
-            //}
-            //catch { }
-            //labelFile.Text = "Выбранный файл: " + xmlPathName;
             if (chooseFile.ShowDialog() == DialogResult.OK)
             {
                 if (isXml(chooseFile.FileName))

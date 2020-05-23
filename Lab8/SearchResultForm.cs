@@ -20,7 +20,7 @@ namespace Lab8
         
         public void DisplayResult(IEnumerable<XNode> result)
         {
-            if (result.Count() == 0)
+            if (result == null || result.Count() == 0)
             {
                 resultDisplayBox.Items.Add("Не найдены записи, соответствующие данным критериям");
                 return;

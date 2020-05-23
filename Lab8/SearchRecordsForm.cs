@@ -46,8 +46,50 @@ namespace Lab8
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
+        }//for tests
+        public static int countRows(XDocument xmlFile, bool surCheck, bool grCheck, bool courCheck, bool ftestCheck,
+                             string surname, string groupT, string courseWork, string finalTest)
+        {
+            IEnumerable<XNode> result = null;
 
+            if (surCheck)
+            {
+                IEnumerable<XNode> temp = xmlFile.Root.Nodes();
+                result = from node in temp
+                         where ((XElement)((XElement)node).Nodes()
+                         .Where((n) => ((XElement)n).Name == "TeacherName").Single()).Value == surname
+                         select node;
+            }
+
+            if (grCheck)
+            {
+                IEnumerable<XNode> temp = result == null ? xmlFile.Root.Nodes() : result;
+                result = from node in temp
+                         where ((XElement)((XElement)node).Nodes()
+                         .Where((n) => ((XElement)n).Name == "GroupCode").Single()).Value == groupT
+                         select node;
+            }
+
+            if (courCheck)
+            {
+                IEnumerable<XNode> temp = result == null ? xmlFile.Root.Nodes() : result;
+                result = from node in temp
+                         where ((XElement)((XElement)node).Nodes()
+                         .Where((n) => ((XElement)n).Name == "CourseWork").Single()).Value == courseWork
+                         select node;
+            }
+
+            if (ftestCheck)
+            {
+                IEnumerable<XNode> temp = result == null ? xmlFile.Root.Nodes() : result;
+                result = from node in temp
+                         where ((XElement)((XElement)node).Nodes()
+                         .Where((n) => ((XElement)n).Name == "FinalTest").Single()).Value == finalTest
+                         select node;
+            }
+            if (result == null) return 0;
+            return result.Count();
+        }
         private IEnumerable<XNode> searchRecords()
         {
             IEnumerable<XNode> result = null;
